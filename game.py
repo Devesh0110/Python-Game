@@ -1,12 +1,12 @@
-
 import pygame
 import random
+
 # initializing pygame
 pygame.init()
 
 # Colors
 white = (255, 255, 255) # rgb format
-red = (100, 0, 0)
+red = (200, 200, 0)
 black = (0, 0, 0)
 
 # Creating window
@@ -18,7 +18,7 @@ gameWindow = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Devesh's Game")
 pygame.display.update()
 clock = pygame.time.Clock()
-font = pygame.font.SysFont(None, 55)
+font = pygame.font.SysFont(None, 50)
 
 def text_screen(text, color, x, y):
     screen_text = font.render(text, True, color)
@@ -39,13 +39,22 @@ def gameloop():
     velocity_y = 0
     snk_list = []
     snk_length = 1
-
+    c = input("Select size of snake. Press s for small, m for medium and l for large")
+    if (c == 's' or c == 'S'):
+        snake_size = 20
+    elif (c == 'm' or c == 'M'):
+        snake_size = 40
+    elif (c == 'l' or c == 'L'):
+        snake_size = 60
+    else:
+        print("Wrong Input")
+        pygame.quit()
     food_x = random.randint(20, screen_width-20)
     food_y = random.randint(60, screen_height -20)
     score = 0
     init_velocity = 4
-    snake_size = 30
-    fps = 120   # fps = frames per second
+
+    fps = 60   # fps = frames per second
     while not exit_game:
         if game_over:
             gameWindow.fill(white)
